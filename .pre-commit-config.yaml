@@ -4,6 +4,59 @@ repos:
     hooks:
       - id: isort
   - repo: https://github.com/PyCQA/flake8
-    rev: 7.0.0
+    rev: 7.1.0
     hooks:
       - id: flake8
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.3.0
+    hooks:
+      - id: codespell
+        args: [ --ignore-words-list=assertIn ]
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.22.9
+    hooks:
+      - id: typos
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-yaml
+        exclude: "mkdocs.yml"
+      - id: check-toml
+      - id: requirements-txt-fixer
+      - id: check-case-conflict
+      - id: detect-private-key
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: text-unicode-replacement-char
+      - id: python-use-type-annotations
+      - id: python-no-log-warn
+      - id: python-no-eval
+  #      - id: python-check-blanket-type-ignore
+  #      - id: python-check-blanket-noqa
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.16.0
+    hooks:
+      - id: pyupgrade
+        args: [ --py38-plus ]
+  - repo: https://github.com/dosisod/refurb
+    rev: v2.0.0
+    hooks:
+      - id: refurb
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.5.0
+    hooks:
+      - id: yesqa
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.9
+    hooks:
+      - id: bandit
+        exclude: (^tests/|^knox_project/)
+  - repo: https://github.com/adamchainz/django-upgrade
+    rev: "1.18.0"  # replace with latest tag on GitHub
+    hooks:
+      - id: django-upgrade
+        args: [ --target-version, "3.2" ]   # Replace with Django version
+exclude: ^knox/migrations
